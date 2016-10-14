@@ -10,6 +10,10 @@ resource "aws_instance" "example" {
 
   # the public SSH key
   key_name = "${aws_key_pair.mykeypair.key_name}"
+
+  # user data
+  user_data = "${data.template_cloudinit_config.cloudinit-example.rendered}"
+
 }
 
 resource "aws_ebs_volume" "ebs-volume-1" {
