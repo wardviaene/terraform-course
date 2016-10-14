@@ -20,7 +20,13 @@ resource "aws_route53_record" "mail1-record" {
    name = "newtech.academy"
    type = "MX"
    ttl = "300"
-   records = ["aspmx.l.google.com"]
+   records = [
+     "1 aspmx.l.google.com.",
+     "5 alt1.aspmx.l.google.com.",
+     "5 alt2.aspmx.l.google.com.",
+     "10 aspmx2.googlemail.com.",
+     "10 aspmx3.googlemail.com."
+   ]
 }
 
 output "ns-servers" {
