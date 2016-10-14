@@ -2,8 +2,6 @@
 
 vgchange -ay
 
-DEVICE="/dev/xvdh"
-
 DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
 exit 0
 pvcreate ${DEVICE}
