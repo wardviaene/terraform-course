@@ -19,5 +19,12 @@ variable "INSTANCE_DEVICE_NAME" {
   default = "/dev/xvdh"
 }
 variable "JENKINS_VERSION" {
-  default = "jenkins_2.7.4_all.deb"
+  default = "2.19.1"
+}
+
+variable "APP_INSTANCE_AMI" {
+  default = "ami-2291de51"
+}
+variable "APP_INSTANCE_COUNT" {
+  default = "0"
 }
