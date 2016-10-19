@@ -18,7 +18,7 @@ mount /var/lib/jenkins
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
 apt-get update
-apt-get install -y jenkins=${JENKINS_VERSION}
+apt-get install -y jenkins=${JENKINS_VERSION} unzip
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py

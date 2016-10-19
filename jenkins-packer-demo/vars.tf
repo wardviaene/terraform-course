@@ -22,9 +22,6 @@ variable "JENKINS_VERSION" {
   default = "2.19.1"
 }
 
-variable "APP_INSTANCE_AMI" {
-  default = "ami-2291de51"
-}
 variable "APP_INSTANCE_COUNT" {
   default = "0"
 }
