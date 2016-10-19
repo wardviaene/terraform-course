@@ -1,4 +1,5 @@
 */terraform.tfvars
 */terraform.tfstate
 */terraform.tfstate.backup
+*/.terraform
 */mykey*
