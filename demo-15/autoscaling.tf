@@ -18,7 +18,7 @@ resource "aws_autoscaling_group" "example-autoscaling" {
 
   tag {
       key = "Name"
-      value = "ec2-container"
+      value = "ec2 instance"
       propagate_at_launch = true
   }
 }
