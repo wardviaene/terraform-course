@@ -33,6 +33,7 @@ EOF
   }
   connection {
     type = "winrm"
+    timeout = "10m"
     user = "${var.INSTANCE_USERNAME}"
     password = "${var.INSTANCE_PASSWORD}"
   }
