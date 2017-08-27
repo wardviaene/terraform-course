@@ -19,7 +19,7 @@ EOF
 }
 resource "aws_iam_instance_profile" "app-ec2-role" {
     name = "app-ec2-role"
-    roles = ["${aws_iam_role.app-ec2-role.name}"]
+    role = "${aws_iam_role.app-ec2-role.name}"
 }
 
 # service
