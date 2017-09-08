@@ -19,7 +19,7 @@ EOF
 
 resource "aws_iam_instance_profile" "s3-mybucket-role-instanceprofile" {
     name = "s3-mybucket-role"
-    roles = ["${aws_iam_role.s3-mybucket-role.name}"]
+    role = "${aws_iam_role.s3-mybucket-role.name}"
 }
 
 resource "aws_iam_role_policy" "s3-mybucket-role-policy" {
