@@ -1,5 +1,5 @@
 #!/bin/bash
-ARTIFACT=`packer build -machine-readable packer-example.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
-AMI_ID=`echo $ARTIFACT |cut -d ':' -f2`
+packer build -machine-readable packer-example.json | tee build.log
+AMI_ID=`egrep -m1 -oe 'ami-.{8}' build.log`
 echo 'variable "AMI_ID" { default = "'${AMI_ID}'" }' > amivar.tf
 terraform apply
