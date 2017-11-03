@@ -5,6 +5,16 @@ vgchange -ay
 
 DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
 if [ "`echo -n $DEVICE_FS`" == "" ] ; then 
+  # wait for the device to be attached
+  DEVICENAME=`echo "${DEVICE}" | awk -F '/' '{print $3}'`
+  DEVICEEXISTS=''
+  while [[ -z $DEVICEEXISTS ]]; do
+    echo "checking $DEVICENAME"
+    DEVICEEXISTS=`ls -asl /dev/disk/by-uuid/ | grep "$DEVICENAME"`
+    if [[ -z $DEVICEEXISTS ]]; then
+      sleep 15
+    fi
+  done
 	pvcreate ${DEVICE}
 	vgcreate data ${DEVICE}
 	lvcreate --name volume1 -l 100%FREE data
