@@ -29,6 +29,7 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   device_name = "${var.INSTANCE_DEVICE_NAME}"
   volume_id = "${aws_ebs_volume.jenkins-data.id}"
   instance_id = "${aws_instance.jenkins-instance.id}"
+  skip_destroy = true
 }
 
 resource "aws_instance" "app-instance" {
