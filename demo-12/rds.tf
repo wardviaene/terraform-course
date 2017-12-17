@@ -27,7 +27,7 @@ resource "aws_db_instance" "mariadb" {
   username             = "root"   # username
   password             = "${var.RDS_PASSWORD}" # password
   db_subnet_group_name = "${aws_db_subnet_group.mariadb-subnet.name}"
-  parameter_group_name = "mariadb-parameters"
+  parameter_group_name = "${aws_db_parameter_group.mariadb-parameters.name}"
   multi_az             = "false"     # set to true to have high availability: 2 instances synchronized with each other
   vpc_security_group_ids = ["${aws_security_group.allow-mariadb.id}"]
   storage_type         = "gp2"
