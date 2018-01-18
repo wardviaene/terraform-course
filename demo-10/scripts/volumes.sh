@@ -4,7 +4,7 @@ set -ex
 
 vgchange -ay
 
-DEVICE_FS=`blkid -o value -s TYPE ${DEVICE}`
+DEVICE_FS=`blkid -o value -s TYPE ${DEVICE} || echo ""`
 if [ "`echo -n $DEVICE_FS`" == "" ] ; then 
   # wait for the device to be attached
   DEVICENAME=`echo "${DEVICE}" | awk -F '/' '{print $3}'`
