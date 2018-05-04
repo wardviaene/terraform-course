@@ -19,7 +19,7 @@ EOF
 }
 resource "aws_iam_instance_profile" "ecs-ec2-role" {
     name = "ecs-ec2-role"
-    roles = ["${aws_iam_role.ecs-ec2-role.name}"]
+    role = "${aws_iam_role.ecs-ec2-role.name}"
 }
 
 resource "aws_iam_role" "ecs-consul-server-role" {
