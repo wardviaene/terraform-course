@@ -1,8 +1,18 @@
 variable "ENV" {}
-variable "INSTANCE_TYPE" { default = "t2.micro" }
-variable "PUBLIC_SUBNETS" { type = "list" }
+
+variable "INSTANCE_TYPE" {
+  default = "t2.micro"
+}
+
+variable "PUBLIC_SUBNETS" {
+  type = "list"
+}
+
 variable "VPC_ID" {}
-variable "PATH_TO_PUBLIC_KEY" { default = "mykey.pub" }
+
+variable "PATH_TO_PUBLIC_KEY" {
+  default = "mykey.pub"
+}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -34,7 +44,7 @@ resource "aws_instance" "instance" {
   key_name = "${aws_key_pair.mykeypair.key_name}"
 
   tags {
-    Name = "instance-${var.ENV}"
+    Name         = "instance-${var.ENV}"
     Environmnent = "${var.ENV}"
   }
 }
@@ -59,7 +69,7 @@ resource "aws_security_group" "allow-ssh" {
   }
 
   tags {
-    Name = "allow-ssh"
+    Name         = "allow-ssh"
     Environmnent = "${var.ENV}"
   }
 }
