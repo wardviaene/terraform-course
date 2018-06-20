@@ -25,8 +25,11 @@ demo-14 | IAM Roles with S3 bucket
 demo-15 | Autoscaling
 demo-16 | Autoscaling with ELB (Elastic Load Balancer)
 demo-17 | Elastic Beanstalk PHP 7 stack with RDS
+demo-18 | Interpolations, VPC module
+demo-18b | Project structure, best practices
 packer-demo | Build AMIs with Packer
 jenkins-packer-demo | Demo with jenkins and Packer
 docker-demo-1 | Using ECR - The EC2 Container Registry
 docker-demo-2 | Using ECS - The EC2 Container Service
 docker-demo-3 | Using ECR/ECS with Jenkins in a complete workflow
+module-demo | Using ECS + ALB in 4 modules to show how developing terraform modules work
