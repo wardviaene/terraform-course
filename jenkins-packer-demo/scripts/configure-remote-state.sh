@@ -1,5 +1,14 @@
-#!/bin/sh
-# not necessary anymore in newer terraform versions, you can use a backend.tf file
-if [ "`terraform --version |head -n1`" == "Terraform v0.7.7" ] ; then
-  terraform remote config -backend=s3 -backend-config="bucket=terraform-state-a2b621f" -backend-config="key=terraform/terraform.tfstate" -backend-config="region=eu-west-1"
-fi
+#!/bin/bash
+
+echo "Newer terraform versions have a new way of defining a backend. Copy paste the following code in a backend.tf file, modify the region/s3 bucket, and execute 'terraform init' to initialize the backend. You'll be asked to copy the data from the local backend to the s3 backend, which you can answer yes.
+"
+echo 'backend.tf
+==========
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-a3c731f"
+    key    = "terraform.tfstate"
+    region = "eu-west-1"
+  }
+}
+'
