@@ -10,15 +10,15 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
   DEVICEEXISTS=''
   while [[ -z $DEVICEEXISTS ]]; do
     echo "checking $DEVICENAME"
-    DEVICEEXISTS=`ls -asl /dev/disk/by-uuid/ | grep "$DEVICENAME"`
-    if [[ -z $DEVICEEXISTS ]]; then
+    DEVICEEXISTS=`lsblk |grep "$DEVICENAME" |wc -l`
+    if [[ $DEVICEEXISTS != "1" ]]; then
       sleep 15
     fi
   done
-	pvcreate ${DEVICE}
-	vgcreate data ${DEVICE}
-	lvcreate --name volume1 -l 100%FREE data
-	mkfs.ext4 /dev/data/volume1
+  pvcreate ${DEVICE}
+  vgcreate data ${DEVICE}
+  lvcreate --name volume1 -l 100%FREE data
+  mkfs.ext4 /dev/data/volume1
 fi
 mkdir -p /var/lib/jenkins
 echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
