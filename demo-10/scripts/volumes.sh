@@ -12,8 +12,9 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
   while [[ -z $DEVICEEXISTS ]]; do
     echo "checking $DEVICENAME"
     DEVICEEXISTS=`lsblk |grep "$DEVICENAME" |wc -l`
-    if [[ $DEVICEEXISTS != "1" ]]; then
+    if [[ $DEVICEEXISTS -eq "0" ]]; then
       sleep 15
+      DEVICEEXISTS=''
     fi
   done
   pvcreate ${DEVICE}
