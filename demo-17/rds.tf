@@ -33,6 +33,7 @@ resource "aws_db_instance" "mariadb" {
   storage_type         = "gp2"
   backup_retention_period = 30    # how long you’re going to keep your backups
   availability_zone = "${aws_subnet.main-private-1.availability_zone}"   # prefered AZ
+  final_snapshot_identifier = "mariadb-final-snapshot" # final snapshot when executing terraform destroy
   tags {
       Name = "mariadb-instance"
   }
