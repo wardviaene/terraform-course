@@ -24,15 +24,19 @@ mkdir -p /var/lib/jenkins
 echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
 
-# install jenkins
+# jenkins repository
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
 apt-get update
+
+# install dependencies
+apt-get install -y python3 openjdk-8-jre
+update-java-alternatives --set java-1.8.0-openjdk-amd64
+# install jenkins
 apt-get install -y jenkins=${JENKINS_VERSION} unzip
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
 python3 get-pip.py
 rm -f get-pip.py
 # install awscli
