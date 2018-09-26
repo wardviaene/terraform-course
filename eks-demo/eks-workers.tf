@@ -1,7 +1,7 @@
 data "aws_ami" "eks-worker" {
   filter {
     name   = "name"
-    values = ["eks-worker-*"]
+    values = ["amazon-eks-node-v*"]
   }
 
   most_recent = true
