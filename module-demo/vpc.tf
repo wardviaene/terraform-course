@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source = "github.com/terraform-aws-modules/terraform-aws-vpc.git?ref=terraform-012"
 
   name = "vpc-module-demo"
   cidr = "10.0.0.0/16"
@@ -16,3 +16,4 @@ module "vpc" {
     Environment = "prod"
   }
 }
+
