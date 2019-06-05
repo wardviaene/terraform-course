@@ -1,5 +1,6 @@
 module "vpc-prod" {
-  source = "github.com/terraform-aws-modules/terraform-aws-vpc.git?ref=terraform-012"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "2.5.0"
 
   name = "vpc-prod"
   cidr = "10.0.0.0/16"
@@ -18,7 +19,8 @@ module "vpc-prod" {
 }
 
 module "vpc-dev" {
-  source = "github.com/terraform-aws-modules/terraform-aws-vpc.git?ref=terraform-012"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "2.5.0"
 
   name = "vpc-dev"
   cidr = "10.0.0.0/16"
