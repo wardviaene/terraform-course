@@ -6,7 +6,7 @@ variable "INSTANCE_TYPE" {
 }
 
 variable "PUBLIC_SUBNETS" {
-  type = list(string)
+  type = list
 }
 
 variable "VPC_ID" {
@@ -37,7 +37,7 @@ resource "aws_instance" "instance" {
   instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
-  subnet_id = var.PUBLIC_SUBNETS[0]
+  subnet_id = element(var.PUBLIC_SUBNETS, 0)
 
   # the security group
   vpc_security_group_ids = [aws_security_group.allow-ssh.id]
