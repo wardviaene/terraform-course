@@ -17,7 +17,7 @@ resource "aws_security_group" "app-prod" {
   } 
 
 
-  tags {
+  tags = {
     Name = "myinstance"
   }
 }
@@ -38,7 +38,7 @@ resource "aws_security_group" "allow-mariadb" {
       cidr_blocks = ["0.0.0.0/0"]
       self = true
   }
-  tags {
+  tags = {
     Name = "allow-mariadb"
   }
 }

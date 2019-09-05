@@ -16,7 +16,7 @@ resource "aws_route_table" "main-private" {
         nat_gateway_id = "${aws_nat_gateway.nat-gw.id}"
     }
 
-    tags {
+    tags = {
         Name = "main-private-1"
     }
 }

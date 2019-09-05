@@ -15,7 +15,7 @@ resource "aws_security_group" "example-instance" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+tags = {
     Name = "example-instance"
   }
 }

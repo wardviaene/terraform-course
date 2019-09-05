@@ -17,7 +17,7 @@ resource "aws_security_group" "allow-ssh-prod" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "allow-ssh"
   }
 }
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow-ssh-dev" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "allow-ssh"
   }
 }

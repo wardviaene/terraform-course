@@ -15,7 +15,7 @@ resource "aws_security_group" "example-instance" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+tags = {
     Name = "example-instance"
   }
 }
@@ -37,7 +37,7 @@ resource "aws_security_group" "allow-mariadb" {
       cidr_blocks = ["0.0.0.0/0"]
       self = true
   }
-  tags {
+  tags = {
     Name = "allow-mariadb"
   }
 }

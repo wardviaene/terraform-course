@@ -21,7 +21,7 @@ resource "aws_security_group" "ecs-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-  tags {
+  tags = {
     Name = "ecs"
   }
 }
@@ -42,7 +42,7 @@ resource "aws_security_group" "myapp-elb-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-  tags {
+  tags = {
     Name = "myapp-elb"
   }
 }
@@ -70,7 +70,7 @@ resource "aws_security_group" "jenkins-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+tags = {
     Name = "jenkins-securitygroup"
   }
 }

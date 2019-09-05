@@ -21,7 +21,7 @@ resource "aws_security_group" "jenkins-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+tags = {
     Name = "jenkins-securitygroup"
   }
 }
@@ -48,7 +48,7 @@ resource "aws_security_group" "app-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+tags = {
     Name = "app-securitygroup"
   }
 }

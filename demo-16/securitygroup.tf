@@ -23,7 +23,7 @@ resource "aws_security_group" "myinstance" {
       security_groups = ["${aws_security_group.elb-securitygroup.id}"]
   }
 
-  tags {
+  tags = {
     Name = "myinstance"
   }
 }
@@ -44,7 +44,7 @@ resource "aws_security_group" "elb-securitygroup" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-  tags {
+  tags = {
     Name = "elb"
   }
 }
