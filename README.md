@@ -3,6 +3,10 @@
 * These files are part of my Udemy course about Terraform
 * Course URL: https://www.udemy.com/learn-devops-infrastructure-automation-with-terraform/?couponCode=TERRAFORM_GIT
 
+# Compatibility
+
+* This is the >=terraform-0.12 branch. For compatibility with older versions, use the terraform-0.11 branch.
+
 # Demo overview
 Demo Directory | Description
 ------------ | -------------
