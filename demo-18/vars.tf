@@ -13,3 +13,4 @@ variable "PATH_TO_PUBLIC_KEY" {
 variable "ENV" {
   default = "prod"
 }
+

@@ -1,10 +1,13 @@
 provider "aws" {
-  region  = "us-east-1"
+  region = "us-east-1"
 }
 
+data "aws_region" "current" {
+}
 
-data "aws_region" "current" {}
+data "aws_availability_zones" "available" {
+}
 
-data "aws_availability_zones" "available" {}
+provider "http" {
+}
 
-provider "http" {}

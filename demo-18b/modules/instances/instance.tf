@@ -1,14 +1,16 @@
-variable "ENV" {}
+variable "ENV" {
+}
 
 variable "INSTANCE_TYPE" {
   default = "t2.micro"
 }
 
 variable "PUBLIC_SUBNETS" {
-  type = "list"
+  type = list
 }
 
-variable "VPC_ID" {}
+variable "VPC_ID" {
+}
 
 variable "PATH_TO_PUBLIC_KEY" {
   default = "mykey.pub"
@@ -31,26 +33,26 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "instance" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "${var.INSTANCE_TYPE}"
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
-  subnet_id = "${var.PUBLIC_SUBNETS[0]}"
+  subnet_id = element(var.PUBLIC_SUBNETS, 0)
 
   # the security group
-  vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
+  vpc_security_group_ids = [aws_security_group.allow-ssh.id]
 
   # the public SSH key
-  key_name = "${aws_key_pair.mykeypair.key_name}"
+  key_name = aws_key_pair.mykeypair.key_name
 
-  tags {
+  tags = {
     Name         = "instance-${var.ENV}"
-    Environmnent = "${var.ENV}"
+    Environmnent = var.ENV
   }
 }
 
 resource "aws_security_group" "allow-ssh" {
-  vpc_id      = "${var.VPC_ID}"
+  vpc_id      = var.VPC_ID
   name        = "allow-ssh-${var.ENV}"
   description = "security group that allows ssh and all egress traffic"
 
@@ -68,13 +70,14 @@ resource "aws_security_group" "allow-ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name         = "allow-ssh"
-    Environmnent = "${var.ENV}"
+    Environmnent = var.ENV
   }
 }
 
 resource "aws_key_pair" "mykeypair" {
   key_name   = "mykeypair-${var.ENV}"
-  public_key = "${file("${path.root}/${var.PATH_TO_PUBLIC_KEY}")}"
+  public_key = file("${path.root}/${var.PATH_TO_PUBLIC_KEY}")
 }
+

@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow-ssh-prod" {
-  vpc_id      = "${module.vpc-prod.vpc_id}"
+  vpc_id      = module.vpc-prod.vpc_id
   name        = "allow-ssh"
   description = "security group that allows ssh and all egress traffic"
 
@@ -17,13 +17,13 @@ resource "aws_security_group" "allow-ssh-prod" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "allow-ssh"
   }
 }
 
 resource "aws_security_group" "allow-ssh-dev" {
-  vpc_id      = "${module.vpc-dev.vpc_id}"
+  vpc_id      = module.vpc-dev.vpc_id
   name        = "allow-ssh"
   description = "security group that allows ssh and all egress traffic"
 
@@ -41,7 +41,8 @@ resource "aws_security_group" "allow-ssh-dev" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "allow-ssh"
   }
 }
+
