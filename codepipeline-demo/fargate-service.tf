@@ -44,6 +44,11 @@ resource "aws_ecs_service" "demo" {
   desired_count = 1
   task_definition = aws_ecs_task_definition.demo.arn
   launch_type = "FARGATE"
+  depends_on = [aws_lb_listener.demo]
+
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
 
   network_configuration {
     subnets = slice(module.vpc.public_subnets, 1, 2)
@@ -52,7 +57,7 @@ resource "aws_ecs_service" "demo" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.demo.id
+    target_group_arn = aws_lb_target_group.demo-blue.id
     container_name = "demo"
     container_port = "3000"
   }

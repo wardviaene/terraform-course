@@ -78,7 +78,7 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "ecs:*",
+      "codedeploy:*",
     ]
     resources = [
       "*",

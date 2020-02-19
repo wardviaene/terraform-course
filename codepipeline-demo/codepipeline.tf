@@ -57,16 +57,14 @@ resource "aws_codepipeline" "demo" {
       name            = "Deploy"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "ECS"
+      provider        = "CodeDeploy"
       input_artifacts = ["demo-docker-build"]
       version         = "1"
 
       configuration = {
-        ClusterName = "demo" # name of cluster
-        ServiceName = "demo" # name of service
+        ApplicationName     = aws_codedeploy_app.demo.name
+        DeploymentGroupName = aws_codedeploy_deployment_group.demo.deployment_group_name
       }
-
-      role_arn = aws_iam_role.demo-codepipeline.arn
     }
   }
 }
