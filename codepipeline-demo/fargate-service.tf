@@ -63,7 +63,8 @@ resource "aws_ecs_service" "demo" {
   }
   lifecycle {
     ignore_changes = [
-      task_definition
+      task_definition,
+      load_balancer
     ]
   }
 }
@@ -73,6 +74,13 @@ resource "aws_security_group" "ecs-demo" {
   name = "ECS demo"
   vpc_id = module.vpc.vpc_id
   description = "ECS demo"
+
+  ingress {
+    from_port = 3000
+    to_port = 3000
+    protocol = "tcp"
+    cidr_blocks = [ "0.0.0.0/0" ]
+  }
 
   egress {
     from_port = 0
