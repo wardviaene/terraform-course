@@ -83,3 +83,8 @@ resource "aws_security_group" "ecs-demo" {
     ]
   }
 }
+
+# logs
+resource "aws_cloudwatch_log_group" "demo" {
+  name = "demo"
+}

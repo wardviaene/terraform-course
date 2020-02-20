@@ -79,6 +79,7 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
     effect = "Allow"
     actions = [
       "codedeploy:*",
+      "ecs:*",
     ]
     resources = [
       "*",
@@ -87,14 +88,18 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "iam:PassRole",
+      "iam:PassRole"
     ]
     resources = [
       aws_iam_role.ecs-task-execution-role.arn,
       aws_iam_role.ecs-demo-task-role.arn,
     ]
+    condition {
+      test     = "StringLike"
+      variable = "iam:PassedToService"
+      values   = ["ecs-tasks.amazonaws.com"]
+    }
   }
-
 }
 
 resource "aws_iam_role_policy" "demo-codepipeline" {

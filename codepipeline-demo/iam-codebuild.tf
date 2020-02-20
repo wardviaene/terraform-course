@@ -115,6 +115,17 @@ resource "aws_iam_role_policy" "demo-codebuild" {
       ]
     }, 
     {
+      "Sid": "ECS",
+      "Effect": "Allow",
+      "Action": [
+        "ecs:List*",
+        "ecs:Describe*"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }, 
+    {
       "Effect": "Allow",
       "Action": [
          "kms:DescribeKey",

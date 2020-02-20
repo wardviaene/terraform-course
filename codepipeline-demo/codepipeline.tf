@@ -54,16 +54,18 @@ resource "aws_codepipeline" "demo" {
     name = "Deploy"
 
     action {
-      name            = "Deploy"
+      name            = "DeployToECS"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "CodeDeploy"
+      provider        = "CodeDeployToECS"
       input_artifacts = ["demo-docker-build"]
       version         = "1"
 
       configuration = {
-        ApplicationName     = aws_codedeploy_app.demo.name
-        DeploymentGroupName = aws_codedeploy_deployment_group.demo.deployment_group_name
+        ApplicationName                = aws_codedeploy_app.demo.name
+        DeploymentGroupName            = aws_codedeploy_deployment_group.demo.deployment_group_name
+        TaskDefinitionTemplateArtifact = "demo-docker-build"
+        AppSpecTemplateArtifact        = "demo-docker-build"
       }
     }
   }

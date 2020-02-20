@@ -22,11 +22,58 @@ data "aws_iam_policy_document" "demo-codedeploy-role-policy" {
   statement {
     effect = "Allow"
     actions = [
-      "ecs:*",
+      "ecs:DescribeServices",
+      "ecs:CreateTaskSet",
+      "ecs:UpdateServicePrimaryTaskSet",
+      "ecs:DeleteTaskSet",
+      "elasticloadbalancing:DescribeTargetGroups",
+      "elasticloadbalancing:DescribeListeners",
+      "elasticloadbalancing:ModifyListener",
+      "elasticloadbalancing:DescribeRules",
+      "elasticloadbalancing:ModifyRule",
+      "lambda:InvokeFunction",
+      "cloudwatch:DescribeAlarms",
+      "sns:Publish",
+      "s3:GetObject",
+      "s3:GetObjectVersion"
     ]
     resources = [
       "*",
     ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:Get*",
+    ]
+    resources = [
+      "${aws_s3_bucket.demo-artifacts.arn}/*",
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "kms:DescribeKey",
+      "kms:Decrypt",
+    ]
+    resources = [
+      aws_kms_key.demo-artifacts.arn
+    ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:PassRole"
+    ]
+    resources = [
+      aws_iam_role.ecs-task-execution-role.arn,
+      aws_iam_role.ecs-demo-task-role.arn,
+    ]
+    condition {
+      test     = "StringLike"
+      variable = "iam:PassedToService"
+      values   = ["ecs-tasks.amazonaws.com"]
+    }
   }
 }
 
