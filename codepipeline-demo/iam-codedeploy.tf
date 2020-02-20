@@ -78,8 +78,8 @@ data "aws_iam_policy_document" "demo-codedeploy-role-policy" {
 }
 
 resource "aws_iam_role_policy" "demo-codedeploy" {
-  name = "codedeploy-policy"
-  role = aws_iam_role.demo-codedeploy.id
+  name   = "codedeploy-policy"
+  role   = aws_iam_role.demo-codedeploy.id
   policy = data.aws_iam_policy_document.demo-codedeploy-role-policy.json
 }
 

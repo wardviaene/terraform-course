@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
     actions = [
       "sts:AssumeRole",
     ]
-    resources = [ 
+    resources = [
       "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/demo-codepipeline",
     ]
   }
@@ -103,8 +103,8 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
 }
 
 resource "aws_iam_role_policy" "demo-codepipeline" {
-  name = "codepipeline-policy"
-  role = aws_iam_role.demo-codepipeline.id
+  name   = "codepipeline-policy"
+  role   = aws_iam_role.demo-codepipeline.id
   policy = data.aws_iam_policy_document.demo-codepipeline-role-policy.json
 }
 

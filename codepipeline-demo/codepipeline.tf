@@ -26,8 +26,8 @@ resource "aws_codepipeline" "demo" {
       output_artifacts = ["demo-docker-source"]
 
       configuration = {
-        RepositoryName   = aws_codecommit_repository.demo.repository_name
-        BranchName       = "master"
+        RepositoryName = aws_codecommit_repository.demo.repository_name
+        BranchName     = "master"
       }
     }
   }
