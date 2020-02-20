@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email)
+  build:
+    commands:
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+  post_build:
+    commands:
+      # push
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      # create new task definition
+      - ./create-new-task-def.sh $IMAGE_REPO_NAME
+      - ./set-network-configuration.sh $IMAGE_REPO_NAME
+
+artifacts:
+  files:
+    - 'appspec.yaml'
+    - 'taskdef.json'

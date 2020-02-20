@@ -1,0 +1,10 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        # <TASK_DEFINITION> will be replaced by codedeploy when the pipeline runs
+        TaskDefinition: "<TASK_DEFINITION>"
+        LoadBalancerInfo: 
+          ContainerName: demo
+          ContainerPort: 3000

@@ -26,8 +26,8 @@ resource "aws_codepipeline" "demo" {
       output_artifacts = ["demo-docker-source"]
 
       configuration = {
-        RepositoryName   = aws_codecommit_repository.demo.repository_name
-        BranchName       = "master"
+        RepositoryName = aws_codecommit_repository.demo.repository_name
+        BranchName     = "master"
       }
     }
   }
@@ -54,19 +54,19 @@ resource "aws_codepipeline" "demo" {
     name = "Deploy"
 
     action {
-      name            = "Deploy"
+      name            = "DeployToECS"
       category        = "Deploy"
       owner           = "AWS"
-      provider        = "ECS"
+      provider        = "CodeDeployToECS"
       input_artifacts = ["demo-docker-build"]
       version         = "1"
 
       configuration = {
-        ClusterName = "demo" # name of cluster
-        ServiceName = "demo" # name of service
+        ApplicationName                = aws_codedeploy_app.demo.name
+        DeploymentGroupName            = aws_codedeploy_deployment_group.demo.deployment_group_name
+        TaskDefinitionTemplateArtifact = "demo-docker-build"
+        AppSpecTemplateArtifact        = "demo-docker-build"
       }
-
-      role_arn = aws_iam_role.demo-codepipeline.arn
     }
   }
 }
