@@ -33,10 +33,6 @@ resource "aws_codebuild_project" "demo" {
       name  = "IMAGE_REPO_NAME"
       value = aws_ecr_repository.demo.name
     }
-    environment_variable {
-      name  = "IMAGE_TAG"
-      value = "latest"
-    }
   }
 
   source {
