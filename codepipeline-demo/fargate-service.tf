@@ -28,7 +28,8 @@ resource "aws_ecs_task_definition" "demo" {
      "healthCheck": {
        "command": [ "CMD-SHELL", "curl -f http://localhost:3000/ || exit 1" ],
        "interval": 30,
-       "retries": 3
+       "retries": 3,
+       "timeout": 5
      }, 
      "portMappings": [
         {

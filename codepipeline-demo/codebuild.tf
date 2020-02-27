@@ -10,10 +10,10 @@ resource "aws_codebuild_project" "demo" {
     type = "CODEPIPELINE"
   }
 
-  cache {
-    type     = "S3"
-    location = aws_s3_bucket.codebuild-cache.bucket
-  }
+  #cache {
+  #  type     = "S3"
+  #  location = aws_s3_bucket.codebuild-cache.bucket
+  #}
 
   environment {
     compute_type    = "BUILD_GENERAL1_SMALL"
@@ -39,5 +39,7 @@ resource "aws_codebuild_project" "demo" {
     type      = "CODEPIPELINE"
     buildspec = "buildspec.yml"
   }
+
+  #depends_on      = [aws_s3_bucket.codebuild-cache]
 }
 
