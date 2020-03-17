@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 cd jenkins-packer-demo
 S3_BUCKET=`aws s3 ls |grep terraform-state |tail -n1 |cut -d ' ' -f3`
 sed -i 's/terraform-state-xx70dpnh/'${S3_BUCKET}'/' backend.tf
