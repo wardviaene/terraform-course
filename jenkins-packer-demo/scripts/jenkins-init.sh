@@ -30,8 +30,8 @@ echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
 apt-get update
 
 # install dependencies
-apt-get install -y python3 openjdk-8-jre
-update-java-alternatives --set java-1.8.0-openjdk-amd64
+apt-get install -y python3 openjdk-11-jdk
+#update-java-alternatives --set java-1.11.0-openjdk-amd64
 # install jenkins
 apt-get install -y jenkins=${JENKINS_VERSION} unzip
 
