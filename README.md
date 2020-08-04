@@ -10,6 +10,7 @@
 # Demo overview
 Demo Directory | Description
 ------------ | -------------
+I am changing
 first-steps | First steps
 demo-1 | First steps: Launching an EC2 instance
 demo-2 | Using provisioner
