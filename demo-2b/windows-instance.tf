@@ -4,7 +4,7 @@ resource "aws_key_pair" "mykey" {
 }
 
 resource "aws_instance" "win-example" {
-  ami           = var.WIN_AMIS[var.AWS_REGION]
+  ami           = data.aws_ami.windows-ami.image_id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.mykey.key_name
   user_data     = <<EOF
