@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {
 }
 
 module "my-ecs" {
-  source         = "github.com/in4it/terraform-modules//modules/ecs-cluster?ref=terraform-0.12"
+  source         = "github.com/in4it/terraform-modules//modules/ecs-cluster"
   VPC_ID         = module.vpc.vpc_id
   CLUSTER_NAME   = "my-ecs"
   INSTANCE_TYPE  = "t2.small"
@@ -16,7 +16,7 @@ module "my-ecs" {
 }
 
 module "my-service" {
-  source              = "github.com/in4it/terraform-modules//modules/ecs-service?ref=terraform-0.12"
+  source              = "github.com/in4it/terraform-modules//modules/ecs-service"
   VPC_ID              = module.vpc.vpc_id
   APPLICATION_NAME    = "my-service"
   APPLICATION_PORT    = "80"
@@ -33,7 +33,7 @@ module "my-service" {
 }
 
 module "my-alb" {
-  source             = "github.com/in4it/terraform-modules//modules/alb?ref=terraform-0.12"
+  source             = "github.com/in4it/terraform-modules//modules/alb"
   VPC_ID             = module.vpc.vpc_id
   ALB_NAME           = "my-alb"
   VPC_SUBNETS        = join(",", module.vpc.public_subnets)
@@ -44,11 +44,10 @@ module "my-alb" {
 }
 
 module "my-alb-rule" {
-  source           = "github.com/in4it/terraform-modules//modules/alb-rule?ref=terraform-0.12"
+  source           = "github.com/in4it/terraform-modules//modules/alb-rule"
   LISTENER_ARN     = module.my-alb.http_listener_arn
   PRIORITY         = 100
   TARGET_GROUP_ARN = module.my-service.target_group_arn
   CONDITION_FIELD  = "host-header"
   CONDITION_VALUES = ["subdomain.ecs.newtech.academy"]
 }
-
