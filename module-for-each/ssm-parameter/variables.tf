@@ -1,0 +1,2 @@
+variable "name" {}
+variable "value" {}
