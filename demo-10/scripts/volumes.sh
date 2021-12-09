@@ -16,6 +16,12 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
       sleep 15
     fi
   done
+  # make sure the device file in /dev/ exists
+  count=0
+  until [[ -e ${DEVICE} || "$count" == "60" ]]; do
+   sleep 5
+   count=$(expr $count + 1)
+  done
   pvcreate ${DEVICE}
   vgcreate data ${DEVICE}
   lvcreate --name volume1 -l 100%FREE data
