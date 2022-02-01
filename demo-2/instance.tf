@@ -15,7 +15,7 @@ resource "aws_instance" "example" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
-      "sudo sed -i -e 's/\r$//' /tmp/script.sh",  # Remove the spurious CR characters.
+      "sudo sed -i -e 's/\r$//' /tmp/script.sh", # Remove the spurious CR characters.
       "sudo /tmp/script.sh",
     ]
   }
