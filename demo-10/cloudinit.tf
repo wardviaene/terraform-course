@@ -1,16 +1,4 @@
-data "template_file" "init-script" {
-  template = file("scripts/init.cfg")
-  vars = {
-    REGION = var.AWS_REGION
-  }
-}
-
-data "template_file" "shell-script" {
-  template = file("scripts/volumes.sh")
-  vars = {
-    DEVICE = var.INSTANCE_DEVICE_NAME
-  }
-}
+# note: previous templatefile datasources have been replaced by the template_file() function
 
 data "template_cloudinit_config" "cloudinit-example" {
   gzip          = false
@@ -19,12 +7,16 @@ data "template_cloudinit_config" "cloudinit-example" {
   part {
     filename     = "init.cfg"
     content_type = "text/cloud-config"
-    content      = data.template_file.init-script.rendered
+    content      = template_file("scripts/init.cfg", {
+      REGION = var.AWS_REGION
+    })
   }
 
   part {
     content_type = "text/x-shellscript"
-    content      = data.template_file.shell-script.rendered
+    content      = template_file("scripts/volumes.sh", {
+      DEVICE = var.INSTANCE_DEVICE_NAME
+    })
   }
 }
 
