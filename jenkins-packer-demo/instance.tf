@@ -28,7 +28,7 @@ resource "aws_instance" "jenkins-instance" {
   key_name = aws_key_pair.mykeypair.key_name
 
   # user data
-  user_data = data.template_cloudinit_config.cloudinit-jenkins.rendered
+  user_data = data.cloudinit_config.cloudinit-jenkins.rendered
 
   # iam instance profile
   iam_instance_profile = aws_iam_instance_profile.jenkins-role.name
