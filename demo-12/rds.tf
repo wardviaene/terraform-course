@@ -18,10 +18,10 @@ resource "aws_db_parameter_group" "mariadb-parameters" {
 resource "aws_db_instance" "mariadb" {
   allocated_storage       = 100 # 100 GB of storage, gives us more IOPS than a lower number
   engine                  = "mariadb"
-  engine_version          = "10.4.13"
+  engine_version          = "10.4"
   instance_class          = "db.t2.small" # use micro if you want to use the free tier
   identifier              = "mariadb"
-  name                    = "mariadb"
+  db_name                 = "mariadb"
   username                = "root"           # username
   password                = var.RDS_PASSWORD # password
   db_subnet_group_name    = aws_db_subnet_group.mariadb-subnet.name
