@@ -18,7 +18,7 @@ resource "aws_db_parameter_group" "mariadb-parameters" {
 resource "aws_db_instance" "mariadb" {
   allocated_storage       = 100 # 100 GB of storage, gives us more IOPS than a lower number
   engine                  = "mariadb"
-  engine_version          = "10.4.13"
+  engine_version          = "10.4"
   instance_class          = "db.t2.small" # use micro if you want to use the free tier
   identifier              = "mariadb"
   db_name                 = "mariadb"
