@@ -3,10 +3,16 @@ resource "aws_elastic_beanstalk_application" "app" {
   description = "app"
 }
 
+# this automatically retrieves the latest solution stack
+data "aws_elastic_beanstalk_solution_stack" "php-latest" {
+  most_recent = true
+  name_regex = "^64bit Amazon Linux (.*) running PHP 8.(.*)$"
+}
+
 resource "aws_elastic_beanstalk_environment" "app-prod" {
   name                = "app-prod"
   application         = aws_elastic_beanstalk_application.app.name
-  solution_stack_name = "64bit Amazon Linux 2018.03 v2.9.6 running PHP 7.3"
+  solution_stack_name = data.aws_elastic_beanstalk_solution_stack.php-latest.name
   setting {
     namespace = "aws:ec2:vpc"
     name      = "VPCId"

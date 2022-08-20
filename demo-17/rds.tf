@@ -21,7 +21,7 @@ resource "aws_db_instance" "mariadb" {
   engine_version            = "10.4.13"
   instance_class            = "db.t2.small" # use micro if you want to use the free tier
   identifier                = "mariadb"
-  name                      = "mydatabase"     # database name
+  db_name                   = "mydatabase"     # database name
   username                  = "root"           # username
   password                  = var.RDS_PASSWORD # password
   db_subnet_group_name      = aws_db_subnet_group.mariadb-subnet.name
