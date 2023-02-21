@@ -106,7 +106,7 @@ resource "aws_elastic_beanstalk_environment" "app-prod" {
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "RDS_DATABASE"
-    value     = aws_db_instance.mariadb.name
+    value     = aws_db_instance.mariadb.db_name
   }
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
