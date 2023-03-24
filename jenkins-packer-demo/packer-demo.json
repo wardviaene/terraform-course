@@ -1,0 +1,20 @@
+{
+  "_comment": ["this is", "a multi-line", "comment"],
+  "builders": [
+    {
+      "_comment": "this is a comment inside a builder",
+      "type": "null",
+      "communicator": "none"
+    }
+  ],
+  "_comment": "this is a root level comment",
+  "provisioners": [
+    {
+      "_comment": "this is a different comment",
+      "type": "shell",
+      "_comment": "this is yet another comment",
+      "inline": ["echo hellooooo"]
+    }
+  ]
+}
+
