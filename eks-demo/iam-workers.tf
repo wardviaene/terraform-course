@@ -33,6 +33,11 @@ resource "aws_iam_role_policy_attachment" "demo-node-AmazonEC2ContainerRegistryR
   role = aws_iam_role.demo-node.name
 }
 
+resource "aws_iam_role_policy_attachment" "demo-node-AmazonSSMManagedInstanceCore" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role = aws_iam_role.demo-node.name
+}
+
 resource "aws_iam_instance_profile" "demo-node" {
   name = "terraform-eks-demo"
   role = aws_iam_role.demo-node.name
