@@ -144,7 +144,7 @@ resource "aws_route_table_association" "main-private-3-a" {
 
 # nat gw
 resource "aws_eip" "nat" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "nat-gw" {
