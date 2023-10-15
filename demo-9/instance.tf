@@ -13,7 +13,7 @@ resource "aws_instance" "example" {
 }
 
 resource "aws_ebs_volume" "ebs-volume-1" {
-  availability_zone = "eu-west-1a"
+  availability_zone = "us-east-1a"
   size              = 20
   type              = "gp2"
   tags = {

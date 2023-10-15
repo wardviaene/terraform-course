@@ -15,7 +15,7 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	// The code that defines your stack goes here
 
 	aws.NewAwsProvider(stack, jsii.String("aws"), &aws.AwsProviderConfig{
-		Region: jsii.String("eu-west-1"),
+		Region: jsii.String("us-east-1"),
 	})
 
 	amiID := getUbuntuAMI(stack)
