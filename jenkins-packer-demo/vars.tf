@@ -15,7 +15,7 @@ variable "INSTANCE_DEVICE_NAME" {
 }
 
 variable "JENKINS_VERSION" {
-  default = "2.375.1"
+  default = "2.414.3"
 }
 
 variable "TERRAFORM_VERSION" {
