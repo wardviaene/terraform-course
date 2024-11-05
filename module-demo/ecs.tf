@@ -16,20 +16,21 @@ module "my-ecs" {
 }
 
 module "my-service" {
-  source              = "github.com/in4it/terraform-modules//modules/ecs-service"
-  vpc_id              = module.vpc.vpc_id
-  application_name    = "my-service"
-  application_port    = "80"
-  application_version = "latest"
-  cluster_arn         = module.my-ecs.cluster_arn
-  service_role_arn    = module.my-ecs.service_role_arn
-  aws_region          = var.AWS_REGION
-  healthcheck_matcher = "200"
-  cpu_reservation     = "256"
-  memory_reservation  = "128"
-  log_group           = "my-log-group"
-  desired_count       = 2
-  alb_arn             = module.my-alb.lb_arn
+  source                = "github.com/in4it/terraform-modules//modules/ecs-service"
+  vpc_id                = module.vpc.vpc_id
+  application_name      = "my-service"
+  application_port      = "80"
+  application_version   = "latest"
+  cluster_arn           = module.my-ecs.cluster_arn
+  service_role_arn      = module.my-ecs.service_role_arn
+  aws_region            = var.AWS_REGION
+  healthcheck_matcher   = "200"
+  cpu_reservation       = "256"
+  memory_reservation    = "128"
+  log_group             = "my-log-group"
+  desired_count         = 2
+  alb_arn               = module.my-alb.lb_arn
+  deployment_controller = "ECS"
 }
 
 module "my-alb" {
