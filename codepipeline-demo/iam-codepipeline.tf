@@ -61,7 +61,8 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
       aws_kms_key.demo-artifacts.arn,
     ]
   }
-  statement {
+  // uncomment the following lines to enable CodeCommit
+  /*statement {
     effect = "Allow"
     actions = [
       "codecommit:UploadArchive",
@@ -73,6 +74,15 @@ data "aws_iam_policy_document" "demo-codepipeline-role-policy" {
     ]
     resources = [
       aws_codecommit_repository.demo.arn,
+    ]
+  }*/
+  statement {
+    effect = "Allow"
+    actions = [
+      "codestar-connections:UseConnection",
+    ]
+    resources = [
+      aws_codestarconnections_connection.github.arn,
     ]
   }
   statement {

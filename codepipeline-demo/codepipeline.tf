@@ -21,13 +21,20 @@ resource "aws_codepipeline" "demo" {
       name             = "Source"
       category         = "Source"
       owner            = "AWS"
-      provider         = "CodeCommit"
+      //provider         = "CodeCommit"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["demo-docker-source"]
 
+      //configuration = {
+      //  RepositoryName = aws_codecommit_repository.demo.repository_name
+      //  BranchName     = "master"
+      //}
+      // CodeStar configuration
       configuration = {
-        RepositoryName = aws_codecommit_repository.demo.repository_name
-        BranchName     = "master"
+        ConnectionArn    = aws_codestarconnections_connection.github.arn
+        FullRepositoryId = "wardviaene/docker-demo-codepipeline"  // change this to your github username/repo
+        BranchName       = "main" // change this to your branch
       }
     }
   }
